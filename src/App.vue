@@ -1,6 +1,15 @@
-<template></template>
+<template>
+  <PostForm @create="createPost" />
+  <PostList :posts="posts" />
+</template>
 <script>
+import PostForm from "./conponents/PostForm.vue";
+import PostList from "./conponents/PostList.vue";
 export default {
+  components: {
+    PostForm,
+    PostList,
+  },
   data() {
     return {
       posts: [
@@ -25,20 +34,11 @@ export default {
           text: "JavaScript universal lang programing",
         },
       ],
-      title: "",
-      about: "",
     };
   },
   methods: {
-    createPost() {
-      const newPost = {
-        id: Date.now(),
-        title: this.title,
-        text: this.about,
-      };
-      this.posts.push(newPost);
-      this.title = "";
-      this.about = "";
+    createPost(post) {
+      this.posts.push(post);
     },
   },
 };
