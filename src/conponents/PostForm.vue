@@ -1,7 +1,7 @@
 <template>
   <form class="form" @submit.prevent>
-    <input class="input" placeholder="Title" type="text" v-model="post.title" />
-    <input type="text" class="input" placeholder="About" v-model="post.text" />
+    <my-input placeholder="Title" type="text" v-model="post.title" />
+    <my-input type="text" placeholder="About" v-model="post.body" />
     <button type="submit" class="button" @click="createPost">Create</button>
   </form>
 </template>
@@ -11,7 +11,7 @@ export default {
     return {
       post: {
         title: "",
-        text: "",
+        body: "",
       },
     };
   },
@@ -19,7 +19,7 @@ export default {
     createPost() {
       this.$emit("create", { id: Date.now(), ...this.post });
       this.post.title = "";
-      this.post.about = "";
+      this.post.body = "";
     },
   },
 };
@@ -30,13 +30,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.input {
-  width: 100%;
-  padding: 15px;
-  display: block;
-  margin-top: 10px;
-  border: 2px solid teal;
-}
+
 .button {
   padding: 15px 40px;
   background-color: teal;
